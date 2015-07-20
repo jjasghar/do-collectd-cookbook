@@ -12,7 +12,7 @@
 # Global settings for the daemon.                                            #
 ##############################################################################
 
-Hostname "<% node[fqdn]>"
+Hostname "<%= node[:fqdn] %>"
 FQDNLookup true
 #BaseDir "/var/lib/collectd"
 #PluginDir "/usr/lib/collectd"
@@ -140,7 +140,7 @@ LoadPlugin processes
 #<LoadPlugin python>
 #	Globals true
 #</LoadPlugin>
-LoadPlugin rrdcached
+#LoadPlugin rrdcached
 LoadPlugin rrdtool
 #LoadPlugin sensors
 #LoadPlugin serial
@@ -1029,8 +1029,8 @@ LoadPlugin write_graphite
 #</Plugin>
 
 <Plugin write_graphite>
-	<Node "<%= node['do-collectd']['graphite_server_name`] %>">
-		Host "<%= node['do-collectd']['graphite_server_ip`] %>"
+	<Node "<%= node['do-collectd']['graphite_server_name'] %>">
+		Host "<%= node['do-collectd']['graphite_server_ip'] %>"
 		Port "2003"
 		Protocol "tcp"
 		LogSendErrors true

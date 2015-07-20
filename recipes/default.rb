@@ -20,8 +20,14 @@ when "debian"
 end
 
 template "/etc/collectd/collectd.conf" do
-  source "collect.conf.erb"
+  source "collectd.conf.erb"
   owner "root"
   group "root"
   mode "0755"
+end
+
+service "collectd" do
+  supports :restart => true
+  action :enable
+  subscribes :restart, "template[/etc/collectd/collectd.conf]", :immediately
 end
