@@ -1,0 +1,17 @@
+---
+driver:
+  name: vagrant
+  network:
+  - ["forwarded_port", {guest: 80, host: 8080}]
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[do-collectd::default]
+    attributes:
